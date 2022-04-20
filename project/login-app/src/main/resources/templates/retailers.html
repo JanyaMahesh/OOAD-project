@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display retailers</title>
+</head>
+<body>
+<div align="center">
+    <h1>retailers</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>mail ID</th>
+                <th>update</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="retailer : ${listretailers}">
+                <td th:text="${retailer.login}"></td>
+                <td th:text="${retailer.mailid}"></td>
+                <td>
+                    <button type="submit">update</button>
+                </td>
+                <td>
+                    <button type="submit">delete</button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
