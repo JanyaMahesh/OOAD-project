@@ -38,6 +38,11 @@ public class ProductService
 //        }
 //    }
 //
+    public List<Product> getProductsByName(String name){
+        List<Product> products = this.productRepository.getProductByName(name).orElseThrow(()->new IllegalStateException("Product doesn't exist"));
+        return products;
+    }
+
     public List<Product> getAllproducts()
     {
         return productRepository.findAll();
