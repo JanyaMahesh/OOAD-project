@@ -14,7 +14,6 @@ public class ProductController
     @Autowired
     private ProductService productService;
 
-
     @GetMapping("/retailer")
     public String getretailerpage()
     {
@@ -28,15 +27,7 @@ public class ProductController
         return "add_prod";
     }
 
-
-//    public String postaddproduct(@ModelAttribute Product product)
-//    {
-//        System.out.println("product request: "+product);
-//        Product newproduct = productService.storeproduct(product.getName(),product.getCategory(),product.getDescription(),product.getPrice());
-//        return newproduct == null?"error":"redirect:/retailer";
-//    }
     @PostMapping("/addproducts")
-
     public String postaddproduct(@RequestParam("file")MultipartFile file,@RequestParam("name") String name,@RequestParam("category") String category,@RequestParam("description") String description,@RequestParam("price") Integer price)
     {
         productService.storeproduct(file,name,category,description,price);
@@ -50,9 +41,33 @@ public class ProductController
         return "products";
     }
 
-    @GetMapping("/viewgadgets")
-    public String prod_gadgets(Model model)
+    @GetMapping("/viewstationary")
+    public String prod_stationary(@RequestParam("name") String name, Model model)
     {
+        model.addAttribute("username",name);
+        model.addAttribute("resultproducts",productService.getstationary());
+        return "show_results";
+    }
+
+    @GetMapping("/viewsports")
+    public String prod_sports(@RequestParam("name") String name, Model model)
+    {
+        model.addAttribute("username",name);
+        model.addAttribute("resultproducts",productService.getsports());
+        return "show_results";
+    }
+    @GetMapping("/viewappliances")
+    public String prod_appliances(@RequestParam("name") String name, Model model)
+    {
+        model.addAttribute("username",name);
+        model.addAttribute("resultproducts",productService.getapplicance());
+        return "show_results";
+    }
+
+    @GetMapping("/viewgadgets")
+    public String prod_gadgets(@RequestParam("name") String name,Model model)
+    {
+        model.addAttribute("username",name);
         model.addAttribute("resultproducts",productService.getgadgets());
         return "show_results";
     }

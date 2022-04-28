@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My cart</title>
+    <link rel="stylesheet" type="text/css" href="css/style2.css">
+</head>
+<body>
+<h1>My cart</h1>
+<h3>user name: <span th:text="${customer}"></span></h3>
+<table border="2">
+
+    <thead class="table-dark">
+    <tr>
+        <th>
+            Product
+        </th>
+        <th>
+            Item Name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Cost
+        </th>
+        <th>
+            Remove item
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item:${cartItems}">
+        <th scope="row"><img alt="" th:src="*{'data:image/jpg;base64,'+{item.image}}" style="width: 100px;height: 100px;"></th>
+        <td th:iniline="text">[[${item.itemname}]]</td>
+        <td th:iniline="text">[[${item.qty}]]</td>
+        <td th:iniline="text">[[${item.price}]]</td>
+        <td th:iniline="text">[[${item.cost}]]</td>
+
+        <td>
+            <a th:href="@{/removeitem(item=${item.itemname})}" class="btn btn-info">remove</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/getbill(customer=${customer})}" class="btn btn-info">CONFIRM ORDER</a>
+
+</body>
+</html>
+
+

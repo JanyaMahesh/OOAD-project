@@ -5,26 +5,27 @@
 	<link rel="stylesheet" type="text/css" href="css/style2.css">
 </head>
 <body>
+<h3>user name: <span th:text="${customer}"></span></h3>
 <header id="home">
 	<nav>
 		<div class="logo">E-Shop</div>
+		<h3>user name: <span th:text="${username}"></span></h3>
+
 		<div class="logo">
 			<form>
 				<input type="text" placeholder="search here">
 			</form>
 		</div>
 		<div class="menu">
-			<a href="#home">Home</a>
-			<a href="#featured">My cart</a>
-			<a href="#man">My orders</a>
-			<!-- <a href="#women">Women</a> -->
-			<a href="#">Shop</a>
+			<a href="/home">Home</a>
+			<a th:href="@{/viewcart(customer=${username})}">My cart</a>
+			<a href="/vieworders">My orders</a>
+			<a href="/logout">Log out</a>
 		</div>
 	</nav>
 
 <div class="container">
 	<div class="left">
-		<!-- <img src="images/s1.png"> -->
 	</div>
 
 
@@ -75,30 +76,29 @@
 		<div class="man-box">
 			 <img src="images/stationary.jpg">
 				<h2>stationary</h2>
-			<h3><a href="/viewstationary">view</a> </h3>
+			<h3><a th:href="@{/viewstationary(name=${username})}">view</a> </h3>
+
 		</div>
 		<div class="man-box">
 			 <img src="images/sports.jpg">
 				<h2>Sports</h2>
-			<h3><a href="/viewsports">view</a> </h3>
+			<h3><a th:href="@{/viewsports(name=${username})}">view</a> </h3>
+
 
 		</div>
 		<div class="man-box">
 			 <img src="images/applicances.png">
 				<h2>Appliances</h2>
-			<h3><a href="/viewappliances">view</a> </h3>
+			<h3><a th:href="@{/viewappliances(name=${username})}">view</a> </h3>
+
 
 		</div>
 		<div class="man-box">
 			 <img src="images/gadgets.jpeg">
 				<h2>Gadgets</h2>
-			<h3><a href="/viewgadgets">view</a> </h3>
+			<h3><a th:href="@{/viewgadgets(name=${username})}">view</a> </h3>
 		</div>
-<!--		<div class="man-box">-->
-<!--			&lt;!&ndash; <img src="images/s5.jpg"> &ndash;&gt;-->
-<!--				<h2>Nike Ferr TR<br>$129.99</h2>-->
-<!--			<h3>Add to cart </h3>-->
-<!--		</div>-->
+
 	</div>
 </section>
 

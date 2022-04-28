@@ -1,5 +1,7 @@
 package com.mvcjava.loginapp.roles.Users;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -16,6 +18,19 @@ public class UserModel
     String mailid;
     String role;
 
+    @Transient
+    @JsonProperty
+    private boolean hascart = false;
+
+    public boolean isHascart()
+    {
+        return hascart;
+    }
+
+    public void setHascart()
+    {
+        this.hascart = false;
+    }
 
     public Integer getId() {
         return id;

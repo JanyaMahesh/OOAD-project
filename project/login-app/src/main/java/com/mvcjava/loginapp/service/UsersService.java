@@ -2,18 +2,15 @@ package com.mvcjava.loginapp.service;
 
 import com.mvcjava.loginapp.roles.Users.UserModel;
 import com.mvcjava.loginapp.repository.UsersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService
 {
+    @Autowired
+    private UsersRepository usersRepository;
 
-    private final UsersRepository usersRepository;
-
-    public UsersService(UsersRepository usersRepository)
-    {
-        this.usersRepository = usersRepository;
-    }
 
     public UserModel registerUser(String login,String password,String email,String role)
     {
@@ -26,12 +23,13 @@ public class UsersService
         }
         else
         {
-            UserModel userModel = new UserModel();
-            userModel.setLogin(login);
-            userModel.setPassword(password);
-            userModel.setMailid(email);
-            userModel.setRole(role);
-            return usersRepository.save(userModel);
+                UserModel userModel = new UserModel();
+                userModel.setLogin(login);
+                userModel.setPassword(password);
+                userModel.setMailid(email);
+                userModel.setRole(role);
+                return usersRepository.save(userModel);
+
         }
     }
     public UserModel authentication(String login,String password)

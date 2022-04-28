@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>showing products</title>
+    <title>product list</title>
+    <link rel="stylesheet" type="text/css" href="css/style2.css">
 </head>
 <body>
+<h3>user name: <span th:text="${username}"></span></h3>
 <div align="center">
     <h1>Product List</h1>
+
     <table border="1">
         <thead>
         <tr>
@@ -17,19 +20,46 @@
             <th>price</th>
         </tr>
         </thead>
-        <tbody>
+<!--        <div class="man-box">-->
+<!--        <tbody>-->
+
+<!--        <div class = "prod_disp" th:each="product:${resultproducts}">-->
+<!--            <div class="prod">-->
+<!--                <ul>-->
+<!--                    <li scope="row"><img alt="" th:src="*{'data:image/jpg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></li>-->
+
+<!--                    <li th:text="${product.name}"></li>-->
+<!--                    <li th:text="${product.category}"></li>-->
+<!--                    <li th:text="${product.description}"></li>-->
+<!--                    <li th:text="${product.price}"></li>-->
+<!--                    <li>-->
+<!--                        <a href="/addtocart">add to cart</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+        </div>
         <tr th:each="product:${resultproducts}">
             <th scope="row"><img alt="" th:src="*{'data:image/jpg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></th>
+
             <td th:text="${product.name}"></td>
             <td th:text="${product.category}"></td>
             <td th:text="${product.description}"></td>
             <td th:text="${product.price}"></td>
+            <td>
+<!--                <a href="/addtocart"><button type="submit">add to cart</button></a>-->
+                <a th:href="@{/addtocart(item=${product.name},customer=${username})}" class="btn btn-info">Add to cart</a>
+            </td>
 
         </tr>
         </tbody>
+        </div>
     </table>
-
 </div>
+
+<br><br>
+<a href="/userdashboard">HOME</a>
+
 
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
@@ -38,11 +39,6 @@ public class ProductService
 //        }
 //    }
 //
-    public List<Product> getProductsByName(String name){
-        List<Product> products = this.productRepository.getProductByName(name).orElseThrow(()->new IllegalStateException("Product doesn't exist"));
-        return products;
-    }
-
     public List<Product> getAllproducts()
     {
         return productRepository.findAll();
@@ -73,8 +69,27 @@ public class ProductService
 
     }
 
+    @Transactional
+    public List<Product> getstationary()
+    {
+        return productRepository.findByCategory("stationary");
+    }
+//
+    @Transactional
+    public List<Product> getsports()
+    {
+        return productRepository.findByCategory("sports");
+    }
+
+    @Transactional
+    public List<Product> getapplicance()
+    {
+        return productRepository.findByCategory("appliance");
+    }
+
+    @Transactional
     public List<Product> getgadgets()
     {
-        return productRepository.findAllByCategory("gadgets");
+        return productRepository.findByCategory("gadgets");
     }
 }

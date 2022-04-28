@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h3>user name: <span th:text="${customer}"></span></h3>
+<div class="form">
+    <form method="post" th:action="@{/payment}" enctype="multipart/form-data">
+        <h2>Payment</h2>
+        <div class="input-box">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="total" th:value="${total}" readonly>
+        </div>
+
+        <div class="input-box">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="amount" placeholder="Rs." required>
+        </div>
+
+        <div class="input-box">
+            <button type="submit">Pay</button>
+        </div>
+        <a href="/home">Home</a>
+    </form>
+</div>
+
+</body>
+</html>

@@ -8,12 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Integer>
 {
-    @Query("select p from Product p where p.name like concat('%',?1,'%')")
-    public Optional<List<Product>> getProductByName(String name);
-    
-    List<Product> findAllByCategory(String category);
+    List<Product> findByCategory(String category);
+    Product findByName(String name);
 }
